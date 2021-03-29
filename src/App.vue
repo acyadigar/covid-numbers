@@ -1,32 +1,30 @@
-<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<template lang='pug'>
+#app
+  #container
+    .brand
+      h1 COVID NUMBERS
+    HomeForm
+    #main
+      TotalCases
+      SelectedCountry
 </template>
 
+<script>
+import HomeForm from '@/components/HomeForm'
+import TotalCases from '@/components/TotalCases'
+import SelectedCountry from '@/components/SelectedCountry'
+
+export default {
+  name: 'Home',
+  components: {
+    HomeForm,
+    TotalCases,
+    SelectedCountry
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+@import './assets/css/normalize.css';
+@import './assets/css/style.css';
 </style>
