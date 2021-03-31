@@ -11,9 +11,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    options: [],
+    options: {},
     totalCases: {},
     countryCases: {},
+    graphData : null
   },
   mutations: {
     SET_OPTIONS(state, data){
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     SET_LIVE_CASES(state, data){
       state.countryCases = data
+    },
+    SET_GRAPH_DATA(state, data){
+      state.graphData = data
     }
   },
   actions: {
@@ -59,6 +63,44 @@ export default new Vuex.Store({
         ...lastTwoDays[0] // today's numbers
       }
       commit('SET_LIVE_CASES', todaysNumbers)
+    },
+    async fetchGraphCountry({commit}, data){
+      const result = await http.get(`/total/dayone/country/${data}`)
+      const dates = result.data.map(data => data.Date.split('T')[0])
+      const confirmed = result.data.map(data => data.Confirmed)
+      const deaths = result.data.map(data => data.Deaths)
+      const recovered = result.data.map(data => data.Recovered)
+      const confirmedLine = {
+        type: 'scatter',
+        mode: 'lines',
+        name: 'Confirmed',
+        x: dates,
+        y: confirmed,
+        line: {color: '#17BECF'}
+      }
+      const deathLine = {
+        type: 'scatter',
+        mode: 'lines',
+        name: 'Deaths',
+        x: dates,
+        y: deaths,
+        line: {color: '#7F7F7F'}
+      }
+      const recoverLine = {
+        type: 'scatter',
+        mode: 'lines',
+        name: 'Recover',
+        x: dates,
+        y: recovered,
+        line: {color: '#F7EA00'}
+      }
+      const countryData = [confirmedLine, recoverLine, deathLine]
+      // const countryData = {
+      //   x: dates,
+      //   y: confirmed,
+      //   type: 'scatter',
+      // }
+      commit('SET_GRAPH_DATA', countryData)
     }
   }
 })

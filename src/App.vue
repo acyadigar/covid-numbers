@@ -6,20 +6,23 @@
     HomeForm
     #main
       TotalCases
-      SelectedCountry
+      Country
+    Graph
 </template>
 
 <script>
 import HomeForm from '@/components/HomeForm'
 import TotalCases from '@/components/TotalCases'
-import SelectedCountry from '@/components/SelectedCountry'
+import Country from '@/components/Country'
+import Graph from '@/components/Graph'
 
 export default {
   name: 'Home',
   components: {
     HomeForm,
     TotalCases,
-    SelectedCountry
+    Country,
+    Graph
   }
 }
 </script>

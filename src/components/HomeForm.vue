@@ -18,17 +18,21 @@ export default {
     }
   },
   methods:{
-    ...mapActions(['fetchOptions', 'fetchCountyData']),
+    ...mapActions(['fetchOptions', 'fetchCountyData', 'fetchGraphCountry']),
     sendSlug(e){
       e.preventDefault()
+      const country = this.options.find(country => country.Country == this.selectedOption)
+      let slug = country.Slug
       this.isLoading = true
       this.error = ''
-      this.fetchCountyData(this.selectedOption)
+      this.fetchCountyData(slug)
       .then(() => this.isLoading = false)
       .catch(() => {
         this.isLoading = false
         this.error = `No confirmed cases for ${this.selectedOption}!`
       })
+      this.fetchGraphCountry(slug)
+      .catch((err) => this.error = `Graph Error! ${err}`)
     },
     getDate(){
       const today = new Date().toLocaleString().split(' ')[0] 
