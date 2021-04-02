@@ -151,12 +151,14 @@ option[disabled]{
 @media (max-width: 960px) {
   #container {
     width: 37.5rem;
-    text-align: center;
   }
-  #main, .main {
+  #main {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  form {
+    text-align: center;
   }
   .global {
     margin-top: 3.5rem;
@@ -165,17 +167,28 @@ option[disabled]{
     margin-top: 1.5rem;
   }
   .slug-button {
+    margin: 1rem;
+    margin-bottom: 0;
     margin-top: .5rem;
   }
 }
 @media (max-width: 550px) {
-  #container {
-    width: 25rem;
-  }
-  .global {
-    width: 25rem;
-  }
+  #container,
+  .global,
   .country {
     width: 25rem;
+  }
+}
+@media (max-width: 400px) {
+  #container,
+  .global,
+  .country {
+    width: 19rem;
+  }
+  .brand {
+    font-size: 12px;
+  }
+  form select {
+    width: 17rem;
   }
 }
