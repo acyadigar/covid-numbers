@@ -22,17 +22,17 @@ export default {
       em Updated Daily
     ul.gl.numbers-list
       li New Confirmed 
-        span {{totalCases.NewConfirmed}}
+        span {{totalCases.NewConfirmed.toLocaleString()}}
       li New Deaths 
-        span {{totalCases.NewDeaths}}
+        span {{totalCases.NewDeaths.toLocaleString()}}
       li New Recovered 
-        span {{totalCases.NewRecovered}}
+        span {{totalCases.NewRecovered.toLocaleString()}}
       li Total Confirmed 
-        span {{totalCases.TotalConfirmed}}
+        span {{totalCases.TotalConfirmed.toLocaleString()}}
       li Total Deaths 
-        span {{totalCases.TotalDeaths}}
+        span {{totalCases.TotalDeaths.toLocaleString()}}
       li Total Recovered 
-        span {{totalCases.TotalRecovered}}
+        span {{totalCases.TotalRecovered.toLocaleString()}}
 </template>
 
 <style scoped>
