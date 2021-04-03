@@ -1,6 +1,10 @@
 <template lang='pug'>
-.graph
-  Plotly(:data="graphData" :layout="layout" :display-mode-bar="false")
+.graph(v-if='graphTotalData && graphDailyData')
+  button(@click='switchGraphs') >
+  transition(name="slide-fade")
+    Plotly(v-if='totalGraph' :data="graphTotalData" :layout="layout" :display-mode-bar="false")
+  transition(name="slide-fade")
+    Plotly(v-if='!totalGraph' :data='graphDailyData' :layout='dailyLayout' :display-mode-bar='false')
 </template>
 
 <script>
@@ -9,22 +13,28 @@ import { mapState } from 'vuex'
 
 export default {
   computed: {
-    ...mapState(['graphData'])
+    ...mapState(['graphTotalData', 'graphDailyData'])
   },
   components: {
     Plotly
   },
+  methods: {
+    switchGraphs(){
+      this.totalGraph = !this.totalGraph
+    }
+  },
   data(){
     return{
+    totalGraph: true,
     layout:{
-      title: "Covid Numbers Since Dayone"
+      title: "Covid Numbers Since Dayone (cumulative)"
+    }, 
+    dailyLayout:{
+      title: "Covid Numbers For Last 90 Days (day by day)"
     }
   }
 }
 }</script>
 
 <style scoped>
-.graph {
-  margin-top: 2rem;
-}
 </style>
