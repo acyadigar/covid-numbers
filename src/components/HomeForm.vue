@@ -52,7 +52,8 @@ export default {
     .form-container
       label Country
       select(v-model='selectedOption')
-        option(disabled selected value='') Pick a country!
+        option(v-if='!options' disabled selected value='') Please wait...
+        option(v-else disabled selected value='') Pick a country!
         option(v-for='option in options') {{option.Country}}
       button.slug-button(@click="sendSlug" :disabled='isNull') Show {{selectedOption}}
     p {{date}}
