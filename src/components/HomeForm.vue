@@ -26,13 +26,14 @@ export default {
       this.isLoading = true
       this.error = ''
       this.fetchCountyData(slug)
-      .then(() => this.isLoading = false)
+      .then(() => {
+        this.fetchGraphCountry(slug)
+        this.isLoading = false
+      })
       .catch(() => {
         this.isLoading = false
         this.error = `No confirmed cases for ${this.selectedOption}!`
       })
-      this.fetchGraphCountry(slug)
-      .catch((err) => this.error = `Graph Error! ${err}`)
     },
     getDate(){
       const today = new Date().toLocaleString().split(' ')[0] 
