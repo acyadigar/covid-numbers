@@ -1,0 +1,1 @@
+[Deployed](https://acyadigar.github.io/covid-numbers/)
