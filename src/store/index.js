@@ -60,7 +60,7 @@ export default new Vuex.Store({
       })
       const todaysNumbers = {
         ...today,
-        ...lastTwoDays[0] // today's numbers
+        ...lastTwoDays[1] // today's numbers
       }
       commit('SET_LIVE_CASES', todaysNumbers)
     },
@@ -102,7 +102,7 @@ export default new Vuex.Store({
       // Setting daily data
       // for last 90 days
       const newCases = []
-      for(let i = 0; i < 180; i++){
+      for(let i = 0; i <= 90; i++){
         let lastTwoDays = result.data.slice(-2)
         const today = lastTwoDays.reduce((yesterday, today) => {
           const newValues = {
@@ -115,7 +115,6 @@ export default new Vuex.Store({
         })
         newCases.push(today)
         result.data.pop()
-        i++
       }
 
       const dailydates = newCases.map(data => data.Date.split('T')[0])
