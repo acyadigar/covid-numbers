@@ -18,7 +18,12 @@ export default {
     }
   },
   methods:{
-    ...mapActions(['fetchOptions', 'fetchCountyData', 'fetchGraphCountry']),
+    // ...mapActions(['fetchOptions', 'fetchCountyData', 'fetchGraphCountry']),
+    ...mapActions({
+      fetchOptions: 'fetchOptions',
+      fetchCountyData: 'fetchCountyData',
+      fetchGraphCountry: 'graph/fetchGraphCountry'
+    }),
     sendSlug(e){
       e.preventDefault()
       const country = this.options.find(country => country.Country == this.selectedOption)

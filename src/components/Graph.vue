@@ -13,7 +13,10 @@ import { mapState } from 'vuex'
 
 export default {
   computed: {
-    ...mapState(['graphTotalData', 'graphDailyData'])
+    ...mapState({
+      graphTotalData: state => state.graph.graphTotalData,
+      graphDailyData: state => state.graph.graphDailyData
+    })
   },
   components: {
     Plotly
